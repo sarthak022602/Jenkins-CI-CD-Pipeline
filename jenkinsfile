@@ -4,66 +4,56 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                // Use a build automation tool like Maven
+                // Add build steps here
             }
         }
         stage('Unit and Integration Tests') {
             steps {
                 echo 'Running Unit and Integration Tests...'
-                // Use tools like JUnit or TestNG
+                // Add test steps here
             }
         }
         stage('Code Analysis') {
             steps {
                 echo 'Analyzing Code...'
-                // Use a code analysis tool like SonarQube
+                // Add code analysis steps here
             }
         }
         stage('Security Scan') {
             steps {
                 echo 'Performing Security Scan...'
-                // Use security tools like OWASP Dependency-Check
+                // Add security scan steps here
             }
         }
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to Staging...'
-                // Deploy to a staging server (e.g., AWS EC2)
+                // Add deployment steps here
             }
         }
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running Integration Tests on Staging...'
-                // Perform tests on staging environment
+                // Add integration test steps here
             }
         }
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to Production...'
-                // Deploy to a production server (e.g., AWS EC2)
+                // Add production deployment steps here
             }
         }
     }
     post {
         success {
-            emailext (
-                to: 'sarthakdutta0007@gmail.com',  
-                subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                body: """<p>Build successful!</p>
-                         <p>Project: ${env.JOB_NAME}</p>
-                         <p>Build Number: ${env.BUILD_NUMBER}</p>
-                         <p>Check console output at ${env.BUILD_URL} to view the results.</p>"""
-            )
+            mail to: 'sarthakdutta0007@gmail.com',
+                 subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                 body: "Build ${env.BUILD_NUMBER} of ${env.JOB_NAME} was successful."
         }
         failure {
-            emailext (
-                to: 'sarthakdutta0007@gmail.com', 
-                subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                body: """<p>Build failed!</p>
-                         <p>Project: ${env.JOB_NAME}</p>
-                         <p>Build Number: ${env.BUILD_NUMBER}</p>
-                         <p>Check console output at ${env.BUILD_URL} to view the results.</p>"""
-            )
+            mail to: 'sarthakdutta0007@gmail.com',
+                 subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                 body: "Build ${env.BUILD_NUMBER} of ${env.JOB_NAME} failed. Check Jenkins for details."
         }
         always {
             echo 'Pipeline completed.'
