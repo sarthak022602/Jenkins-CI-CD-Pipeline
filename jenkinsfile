@@ -46,18 +46,25 @@ pipeline {
     }
     post {
         success {
-            mail to: 'sarthakdutta0007@gmail.com',
-                 subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                 body: "Build ${env.BUILD_NUMBER} of ${env.JOB_NAME} was successful."
-	      attachLog: true // Attach the build log to the emailattachLog: 
+            emailext (
+                to: 'sarthakdutta0007@gmail.com',
+                subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: """<p>Build ${env.BUILD_NUMBER} of ${env.JOB_NAME} was successful.</p>
+                         <p>Check console output at ${env.BUILD_URL} to view the results.</p>""",
+                attachLog: true  // Attach the build log to the email
+            )
         }
         failure {
-            mail to: 'sarthakdutta0007@gmail.com',
-                 subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-                 body: "Build ${env.BUILD_NUMBER} of ${env.JOB_NAME} failed. Check Jenkins for details."
-	      attachLog: true // Attach the build log to the email
+            emailext (
+                to: 'sarthakdutta0007@gmail.com',
+                subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                body: """<p>Build ${env.BUILD_NUMBER} of ${env.JOB_NAME} failed.</p>
+                         <p>Check console output at ${env.BUILD_URL} to view the details.</p>""",
+                attachLog: true  // Attach the build log to the email
+            )
         }
         always {
             echo 'Pipeline completed.'
         }
     }
+}
