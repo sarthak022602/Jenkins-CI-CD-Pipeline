@@ -47,7 +47,7 @@ pipeline {
     post {
         success {
             emailext (
-                to: 'sarthakdutta0007@gmail.com',
+                to: 'sarthakforspotify@gmail.com',
                 subject: "SUCCESS: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """<p>Build ${env.BUILD_NUMBER} of ${env.JOB_NAME} was successful.</p>
                          <p>Check console output at ${env.BUILD_URL} to view the results.</p>""",
@@ -56,7 +56,7 @@ pipeline {
         }
         failure {
             emailext (
-                to: 'sarthakdutta0007@gmail.com',
+                to: 'sarthakforspotify@gmail.com',
                 subject: "FAILURE: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """<p>Build ${env.BUILD_NUMBER} of ${env.JOB_NAME} failed.</p>
                          <p>Check console output at ${env.BUILD_URL} to view the details.</p>""",
