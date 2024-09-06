@@ -18,6 +18,7 @@ pipeline {
                         emailext attachLog: true, subject: "Test Results",
                             body: "The tests have completed. Please check the logs for details.",
                             to: "sarthakforspotify@gmail.com"
+                            // attachLog: true
                     }
                 }
                 // failure {
@@ -43,6 +44,7 @@ pipeline {
                         emailext attachLog: true, subject: "Security Scan Results",
                             body: "The Security Scans have completed. Please check the logs for details.",
                             to: "sarthakforspotify@gmail.com"
+                            // attachLog: true
                     }
                 }
                 // failure {
