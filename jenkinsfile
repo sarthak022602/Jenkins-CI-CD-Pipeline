@@ -17,13 +17,13 @@ pipeline {
                     script {
                         emailext attachLog: true, subject: "Test Results",
                             body: "The tests have completed. Please check the logs for details.",
-                            to: "sarthakforspotify@gmail.com"
+                            to: "sarthakforjenkins@gmail.com"
                     }
                 }
                 // failure {
                     // emailext subject: "Test Failure",
                         // body: "The tests have failed. Please check the logs for details.",
-                        // to: "sarthakforspotify@gmail.com",
+                        // to: "sarthakforjenkins@gmail.com",
                         // attachLog: true
                 // }
             }
@@ -42,13 +42,13 @@ pipeline {
                     script{
                         emailext attachLog: true, subject: "Security Scan Results",
                             body: "The Security Scans have completed. Please check the logs for details.",
-                            to: "sarthakforspotify@gmail.com"
+                            to: "sarthakforjenkins@gmail.com"
                     }
                 }
                 // failure {
                     // emailext subject: "Security Scan Failure",
                         // body: "The Security Scans have failed. Please check the logs for details.",
-                        // to: "sarthakforspotify@gmail.com",
+                        // to: "sarthakforjenkins@gmail.com",
                         // attachLog: true
                 // }
             }
